@@ -7,7 +7,6 @@ import entity.PageResult;
 import entity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -56,5 +55,21 @@ public class BrandController {
     @RequestMapping("/search")
     public PageResult search(@RequestBody TbBrand brand,int pageNum,int pageSize){
         return brandService.findPage(brand,pageNum,pageSize);
+    }
+
+    @RequestMapping("/findOne")
+    public TbBrand findOne(Long id){
+        return brandService.findOne(id);
+    }
+
+    @RequestMapping("/update")
+    public Result update(@RequestBody TbBrand brand){
+        try{
+            brandService.update(brand);
+            return new Result(true,"修改成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false,"修改失败");
+        }
     }
 }

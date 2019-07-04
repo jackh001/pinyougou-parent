@@ -10,6 +10,7 @@ import com.pinyougou.sellergoods.service.BrandService;
 import entity.PageResult;
 import entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -104,6 +105,18 @@ public class BrandServiceImpl implements BrandService {
             tbBrandMapper.deleteByPrimaryKey(id);
         }
     }
+
+    @Override
+    public TbBrand findOne(Long id) {
+        return tbBrandMapper.selectByPrimaryKey(id);
+    }
+
+
+    @Override
+    public void update(TbBrand brand) {
+        tbBrandMapper.updateByPrimaryKey(brand);
+    }
+
 
 
 }

@@ -55,6 +55,26 @@ public interface BrandService {
     */
     public void delete(Long[] ids);
 
+    /**
+    * @Description: 查询品牌
+    * @params      * @param null
+    * @return
+    * @exception
+    * @date        2019/7/4 23:32
+    */
+    public TbBrand findOne(Long id);
+
+    /**
+    * @Description: 更新品牌
+    * @params      * @param null
+    * @return
+    * @exception
+    * @date        2019/7/4 23:32
+    */
+    public void update(TbBrand brand);
+
+
+
 
 
 }
