@@ -3,10 +3,10 @@ app.service('brandService',function ($http) {
     this.findAll= function(){
         return $http.get('../brand/findAll.do');
     };
-    this.findPage = function (pageNum, pageSize) {
+    this.findPage= function (pageNum, pageSize) {
         return $http.get('../brand/findPage.do?pageNum=' + pageNum + '&pageSize=' + pageSize);
     };
-    this.finOne =function (id) {
+    this.findOne=function (id) {
         return $http.get('../brand/findOne.do?'+'id='+id);
     }
     this.add =function (entity) {
@@ -15,7 +15,7 @@ app.service('brandService',function ($http) {
     this.update =function (entity) {
         return  $http.post('../brand/update.do', entity);
     }
-    this.delete =function (ids) {
+    this.dele =function (ids) {
         return  $http.get('../brand/delete.do?ids=' + ids);
     }
 
