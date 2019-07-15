@@ -1,8 +1,8 @@
  //控制层 
-app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService){	
+app.controller('typeTemplateController' ,function($scope,$controller,typeTemplateService){
 	
 	$controller('baseController',{$scope:$scope});//继承
-	
+
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
 		typeTemplateService.findAll().success(
@@ -65,8 +65,8 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 		);				
 	}
 	
-	$scope.searchEntity={};//定义搜索对象 
-	
+	$scope.searchEntity={};//定义搜索对象
+
 	//搜索
 	$scope.search=function(page,rows){			
 		typeTemplateService.search(page,rows,$scope.searchEntity).success(
@@ -76,5 +76,13 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 			}			
 		);
 	}
+
+    $scope.config3 = {
+        data: [{id:1,text:'bug'},{id:2,text:'duplicate'},{id:3,text:'invalid'},{id:4,text:'wontfix'}]
+        // 其他配置略，可以去看看内置配置中的ajax配置
+    };
+
+
+    $scope.brandList={date:[{id:1,text:'联想'},{id:2,text:'华为'},{id:3,text:'中兴'}]};
     
 });	

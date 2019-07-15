@@ -50,6 +50,7 @@
     <resource url="http://www.springframework.org/schema/beans" location="F:/pinyougou/dtd-schema/spring-beans-4.2.xsd" />
     <resource url="http://www.springframework.org/schema/context" location="F:/pinyougou/dtd-schema/spring-context-4.2.xsd" />
     <resource url="http://www.springframework.org/schema/mvc" location="F:/pinyougou/dtd-schema/spring-mvc-4.2.xsd" />
+    <resource url="http://www.springframework.org/schema/security " location="F:/pinyougou/dtd-schema/spring-security.xsd" />
     <resource url="http://www.springframework.org/schema/tx" location="F:/pinyougou/dtd-schema/spring-tx-4.2.xsd" />
     <resource url="http://www.springframework.org/schema/util" location="F:/pinyougou/dtd-schema/spring-util-4.2.xsd" />
   </component>
