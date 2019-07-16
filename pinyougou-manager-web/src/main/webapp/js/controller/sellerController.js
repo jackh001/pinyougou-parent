@@ -23,7 +23,7 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 	}
 	
 	//查询实体 
-	$scope.findOne=function(id){				
+	$scope.findOne=function(id){
 		sellerService.findOne(id).success(
 			function(response){
 				$scope.entity= response;					
@@ -76,5 +76,16 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}			
 		);
 	}
+	
+	$scope.updateStatus=function (sellerId,status) {
+        sellerService.updateStatus(sellerId,status).success(
+        	function (response) {
+			if(response.success){
+                $scope.reloadList();
+			}else{
+				alert(response.message)
+			}
+        });
+    }
     
 });	

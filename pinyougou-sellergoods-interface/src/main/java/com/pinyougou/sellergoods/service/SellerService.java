@@ -1,4 +1,5 @@
 package com.pinyougou.sellergoods.service;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import com.pinyougou.pojo.TbSeller;
 
@@ -41,7 +42,7 @@ public interface SellerService {
 	 * @param id
 	 * @return
 	 */
-	public TbSeller findOne(String id);
+	public TbSeller findOne(String id) throws UnsupportedEncodingException;
 	
 	
 	/**
@@ -57,5 +58,15 @@ public interface SellerService {
 	 * @return
 	 */
 	public PageResult findPage(TbSeller seller, int pageNum, int pageSize);
+
+	
+	/**
+	* @Description:
+	* @params      * @param null
+	* @return      
+	* @exception   
+	* @date        2019/7/16 20:27
+	*/
+	public void updateState(String sellerId,String status);
 	
 }
