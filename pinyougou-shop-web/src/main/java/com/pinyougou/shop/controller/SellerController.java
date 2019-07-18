@@ -1,35 +1,35 @@
-package com.pinyougou.manager.controller;
+package com.pinyougou.shop.controller;
+import java.util.List;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.pojo.TbGoods;
-import com.pinyougou.sellergoods.service.GoodsService;
-import entity.PageResult;
-import entity.Result;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.pojo.TbSeller;
+import com.pinyougou.sellergoods.service.SellerService;
 
-import java.util.List;
-
+import entity.PageResult;
+import entity.Result;
 /**
  * controller
  * @author Administrator
  *
  */
 @RestController
-@RequestMapping("/goods")
-public class GoodsController {
+@RequestMapping("/seller")
+public class SellerController {
 
 	@Reference
-	private GoodsService goodsService;
+	private SellerService sellerService;
 	
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
 	@RequestMapping("/findAll")
-	public List<TbGoods> findAll(){			
-		return goodsService.findAll();
+	public List<TbSeller> findAll(){			
+		return sellerService.findAll();
 	}
 	
 	
@@ -39,18 +39,23 @@ public class GoodsController {
 	 */
 	@RequestMapping("/findPage")
 	public PageResult  findPage(int page,int rows){			
-		return goodsService.findPage(page, rows);
+		return sellerService.findPage(page, rows);
 	}
 	
 	/**
 	 * 增加
-	 * @param goods
+	 * @param seller
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbGoods goods){
+	public Result add(@RequestBody TbSeller seller){
+		//密码加密
+		BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+		String password = passwordEncoder.encode(seller.getPassword());//加密
+		seller.setPassword(password);
+		
 		try {
-			goodsService.add(goods);
+			sellerService.add(seller);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,13 +65,13 @@ public class GoodsController {
 	
 	/**
 	 * 修改
-	 * @param goods
+	 * @param seller
 	 * @return
 	 */
 	@RequestMapping("/update")
-	public Result update(@RequestBody TbGoods goods){
+	public Result update(@RequestBody TbSeller seller){
 		try {
-			goodsService.update(goods);
+			sellerService.update(seller);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,8 +85,8 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/findOne")
-	public TbGoods findOne(Long id){
-		return goodsService.findOne(id);		
+	public TbSeller findOne(String id){
+		return sellerService.findOne(id);		
 	}
 	
 	/**
@@ -90,9 +95,9 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/delete")
-	public Result delete(Long [] ids){
+	public Result delete(String [] ids){
 		try {
-			goodsService.delete(ids);
+			sellerService.delete(ids);
 			return new Result(true, "删除成功"); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,14 +107,14 @@ public class GoodsController {
 	
 		/**
 	 * 查询+分页
-	 * @param goods
+	 * @param
 	 * @param page
 	 * @param rows
 	 * @return
 	 */
 	@RequestMapping("/search")
-	public PageResult search(@RequestBody TbGoods goods, int page, int rows  ){
-		return goodsService.findPage(goods, page, rows);		
+	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
+		return sellerService.findPage(seller, page, rows);		
 	}
 	
 }
