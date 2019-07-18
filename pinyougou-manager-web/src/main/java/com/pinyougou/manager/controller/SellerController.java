@@ -1,4 +1,5 @@
 package com.pinyougou.manager.controller;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -79,8 +80,8 @@ public class SellerController {
 	 * @return
 	 */
 	@RequestMapping("/findOne")
-	public TbSeller findOne(String id){
-		return sellerService.findOne(id);		
+	public TbSeller findOne(String id) throws UnsupportedEncodingException {
+		return sellerService.findOne(id);
 	}
 	
 	/**
@@ -110,5 +111,20 @@ public class SellerController {
 	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
 		return sellerService.findPage(seller, page, rows);		
 	}
+
+	@RequestMapping("/updateStatus")
+	public Result updateStatus(String sellerId,String status){
+		System.out.println("sellerId = "+sellerId);
+		System.out.println("status = "+status);
+
+		try {
+			sellerService.updateState(sellerId,status);
+			return new Result(true, "更新成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(true, "更新成功");
+		}
+	}
+
 	
 }
